@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 public class ReflectedAccessor {
 
     @NonNull
-    static <T> Class<T> getClass(@NonNull String className) throws ReflectedException {
+    public static <T> Class<T> getClass(@NonNull String className) throws ReflectedException {
         try {
             //noinspection unchecked
             return (Class<T>) Class.forName(className);
@@ -26,7 +26,7 @@ public class ReflectedAccessor {
     }
 
     @NonNull
-    static <T> Constructor<T> getAccessibleConstructor(@NonNull Class<T> declaringClass,
+    public static <T> Constructor<T> getAccessibleConstructor(@NonNull Class<T> declaringClass,
                                                        @NonNull Class<?>... parameterTypes)
             throws ReflectedException {
         try {
@@ -39,8 +39,8 @@ public class ReflectedAccessor {
     }
 
     @NonNull
-    static Field getAccessibleField(@NonNull Class<?> declaringClass, @NonNull String fieldName)
-            throws ReflectedException {
+    public static Field getAccessibleField(@NonNull Class<?> declaringClass,
+                                           @NonNull String fieldName) throws ReflectedException {
         try {
             Field field = declaringClass.getDeclaredField(fieldName);
             field.setAccessible(true);
@@ -51,8 +51,9 @@ public class ReflectedAccessor {
     }
 
     @NonNull
-    static Method getAccessibleMethod(@NonNull Class<?> declaringClass, @NonNull String methodName,
-                                      @NonNull Class<?>... parameterTypes)
+    public static Method getAccessibleMethod(@NonNull Class<?> declaringClass,
+                                             @NonNull String methodName,
+                                             @NonNull Class<?>... parameterTypes)
             throws ReflectedException {
         try {
             Method method = declaringClass.getDeclaredMethod(methodName, parameterTypes);
@@ -64,8 +65,8 @@ public class ReflectedAccessor {
     }
 
     @NonNull
-    static <T> T newInstance(@NonNull Constructor<T> constructor, @NonNull Object... arguments)
-            throws ReflectedException {
+    public static <T> T newInstance(@NonNull Constructor<T> constructor,
+                                    @NonNull Object... arguments) throws ReflectedException {
         //noinspection TryWithIdenticalCatches
         try {
             return constructor.newInstance(arguments);
@@ -78,7 +79,7 @@ public class ReflectedAccessor {
         }
     }
 
-    static <T> T getObject(@NonNull Field field, @Nullable Object object)
+    public static <T> T getObject(@NonNull Field field, @Nullable Object object)
             throws ReflectedException {
         try {
             //noinspection unchecked
@@ -88,7 +89,7 @@ public class ReflectedAccessor {
         }
     }
 
-    static boolean getBoolean(@NonNull Field field, @Nullable Object object)
+    public static boolean getBoolean(@NonNull Field field, @Nullable Object object)
             throws ReflectedException {
         try {
             return field.getBoolean(object);
@@ -97,7 +98,8 @@ public class ReflectedAccessor {
         }
     }
 
-    static byte getByte(@NonNull Field field, @Nullable Object object) throws ReflectedException {
+    public static byte getByte(@NonNull Field field, @Nullable Object object)
+            throws ReflectedException {
         try {
             return field.getByte(object);
         } catch (IllegalAccessException e) {
@@ -105,7 +107,8 @@ public class ReflectedAccessor {
         }
     }
 
-    static char getChar(@NonNull Field field, @Nullable Object object) throws ReflectedException {
+    public static char getChar(@NonNull Field field, @Nullable Object object)
+            throws ReflectedException {
         try {
             return field.getChar(object);
         } catch (IllegalAccessException e) {
@@ -113,7 +116,8 @@ public class ReflectedAccessor {
         }
     }
 
-    static short getShort(@NonNull Field field, @Nullable Object object) throws ReflectedException {
+    public static short getShort(@NonNull Field field, @Nullable Object object)
+            throws ReflectedException {
         try {
             return field.getShort(object);
         } catch (IllegalAccessException e) {
@@ -121,7 +125,8 @@ public class ReflectedAccessor {
         }
     }
 
-    static int getInt(@NonNull Field field, @Nullable Object object) throws ReflectedException {
+    public static int getInt(@NonNull Field field, @Nullable Object object)
+            throws ReflectedException {
         try {
             return field.getInt(object);
         } catch (IllegalAccessException e) {
@@ -129,7 +134,8 @@ public class ReflectedAccessor {
         }
     }
 
-    static long getLong(@NonNull Field field, @Nullable Object object) throws ReflectedException {
+    public static long getLong(@NonNull Field field, @Nullable Object object)
+            throws ReflectedException {
         try {
             return field.getLong(object);
         } catch (IllegalAccessException e) {
@@ -137,7 +143,8 @@ public class ReflectedAccessor {
         }
     }
 
-    static float getFloat(@NonNull Field field, @Nullable Object object) throws ReflectedException {
+    public static float getFloat(@NonNull Field field, @Nullable Object object)
+            throws ReflectedException {
         try {
             return field.getFloat(object);
         } catch (IllegalAccessException e) {
@@ -145,7 +152,7 @@ public class ReflectedAccessor {
         }
     }
 
-    static double getDouble(@NonNull Field field, @Nullable Object object)
+    public static double getDouble(@NonNull Field field, @Nullable Object object)
             throws ReflectedException {
         try {
             return field.getDouble(object);
@@ -154,7 +161,7 @@ public class ReflectedAccessor {
         }
     }
 
-    static void setObject(@NonNull Field field, @Nullable Object object, Object value)
+    public static void setObject(@NonNull Field field, @Nullable Object object, Object value)
             throws ReflectedException {
         try {
             field.set(object, value);
@@ -163,7 +170,7 @@ public class ReflectedAccessor {
         }
     }
 
-    static void setBoolean(@NonNull Field field, @Nullable Object object, boolean value)
+    public static void setBoolean(@NonNull Field field, @Nullable Object object, boolean value)
             throws ReflectedException {
         try {
             field.setBoolean(object, value);
@@ -172,7 +179,7 @@ public class ReflectedAccessor {
         }
     }
 
-    static void setByte(@NonNull Field field, @Nullable Object object, byte value)
+    public static void setByte(@NonNull Field field, @Nullable Object object, byte value)
             throws ReflectedException {
         try {
             field.setByte(object, value);
@@ -181,7 +188,7 @@ public class ReflectedAccessor {
         }
     }
 
-    static void setChar(@NonNull Field field, @Nullable Object object, char value)
+    public static void setChar(@NonNull Field field, @Nullable Object object, char value)
             throws ReflectedException {
         try {
             field.setChar(object, value);
@@ -190,7 +197,7 @@ public class ReflectedAccessor {
         }
     }
 
-    static void setShort(@NonNull Field field, @Nullable Object object, short value)
+    public static void setShort(@NonNull Field field, @Nullable Object object, short value)
             throws ReflectedException {
         try {
             field.setShort(object, value);
@@ -199,7 +206,7 @@ public class ReflectedAccessor {
         }
     }
 
-    static void setInt(@NonNull Field field, @Nullable Object object, int value)
+    public static void setInt(@NonNull Field field, @Nullable Object object, int value)
             throws ReflectedException {
         try {
             field.setInt(object, value);
@@ -208,7 +215,7 @@ public class ReflectedAccessor {
         }
     }
 
-    static void setLong(@NonNull Field field, @Nullable Object object, long value)
+    public static void setLong(@NonNull Field field, @Nullable Object object, long value)
             throws ReflectedException {
         try {
             field.setLong(object, value);
@@ -217,7 +224,7 @@ public class ReflectedAccessor {
         }
     }
 
-    static void setFloat(@NonNull Field field, @Nullable Object object, float value)
+    public static void setFloat(@NonNull Field field, @Nullable Object object, float value)
             throws ReflectedException {
         try {
             field.setFloat(object, value);
@@ -226,7 +233,7 @@ public class ReflectedAccessor {
         }
     }
 
-    static void setDouble(@NonNull Field field, @Nullable Object object, double value)
+    public static void setDouble(@NonNull Field field, @Nullable Object object, double value)
             throws ReflectedException {
         try {
             field.setDouble(object, value);
@@ -235,8 +242,8 @@ public class ReflectedAccessor {
         }
     }
 
-    static <T> T invoke(@NonNull Method method, @Nullable Object object,
-                        @NonNull Object... arguments) throws ReflectedException {
+    public static <T> T invoke(@NonNull Method method, @Nullable Object object,
+                               @NonNull Object... arguments) throws ReflectedException {
         //noinspection TryWithIdenticalCatches
         try {
             //noinspection unchecked
