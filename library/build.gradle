@@ -1,0 +1,11 @@
+plugins {
+    id 'java-library'
+}
+
+sourceCompatibility = 1.8
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.1.0-rc01'
+}
+
+apply from: '../bintray.gradle'

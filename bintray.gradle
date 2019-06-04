@@ -1,0 +1,76 @@
+/*
+ * Copyright (c) 2018 Hai Zhang <dreaming.in.code.zh@gmail.com>
+ * All Rights Reserved.
+ */
+
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier "sources"
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+    classifier 'javadoc'
+    javadoc.failOnError = false
+}
+
+publishing {
+    publications {
+        myPublication(MavenPublication) {
+            from components.java
+            artifact sourceJar
+            artifact javadocJar
+            pom {
+                name = project.name
+                description = POM_DESCRIPTION
+                url = POM_URL
+                licenses {
+                    license {
+                        name = POM_LICENCE_NAME
+                        url = POM_LICENCE_URL
+                    }
+                }
+                developers {
+                    developer {
+                        id = POM_DEVELOPER_ID
+                        name = POM_DEVELOPER_NAME
+                        email = POM_DEVELOPER_EMAIL
+                    }
+                }
+                scm {
+                    connection = POM_SCM_CONNECTION
+                    developerConnection = POM_SCM_DEVELOPER_CONNECTION
+                    url = POM_SCM_URL
+                }
+            }
+        }
+    }
+}
+
+def getBintrayKey() {
+    return hasProperty('BINTRAY_KEY') ? BINTRAY_KEY : System.getenv('BINTRAY_KEY') ?:
+            System.console() != null ? System.console().readLine("\nBintray key: ") : ""
+}
+
+bintray {
+    user = BINTRAY_USER
+    key = getBintrayKey()
+    publications = ['myPublication']
+    pkg {
+        repo = BINTRAY_REPO
+        name = project.name
+        desc = POM_DESCRIPTION
+        websiteUrl = POM_URL
+        issueTrackerUrl = BINTRAY_ISSUE_TRACKER_URL
+        vcsUrl = BINTRAY_VCS_URL
+        githubRepo = BINTRAY_GITHUB_REPO
+        publicDownloadNumbers = true
+        licenses = [BINTRAY_LICENSE]
+        version {
+            name = VERSION
+        }
+    }
+}
