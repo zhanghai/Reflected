@@ -12,7 +12,7 @@ A Java library for easy-to-use reflection.
 
 ```gradle
 dependencies {
-    implementation 'me.zhanghai.java.reflected:library:1.0.0'
+    implementation 'me.zhanghai.java.reflected:library:1.0.1'
 }
 ```
 
