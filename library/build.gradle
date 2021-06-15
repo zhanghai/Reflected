@@ -6,7 +6,7 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.1.0-rc01'
+    implementation 'androidx.annotation:annotation:1.2.0'
 }
 
-apply from: '../bintray-java.gradle'
+apply plugin: 'com.vanniktech.maven.publish'
